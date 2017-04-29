@@ -2,12 +2,13 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const processDir = require('process').cwd();
 
 const {version} = require('../package.json');
 
 module.exports = {
   devtool: 'source-map',
-  context: path.join(__dirname, '../'),
+  context: path.join(processDir),
   performance: {
     hints: false
   },
@@ -15,7 +16,7 @@ module.exports = {
     './src/_js/index.js'
   ],
   output: {
-    path: path.join(__dirname, '../src/builds/js/'),
+    path: path.join(processDir, './src/builds/js/'),
     filename: 'index.bundle.js',
     publicPath: `/builds/js/`
   },

@@ -11,7 +11,7 @@ let runSequence = require('run-sequence');
 let gutil = require('gulp-util');
 let webpack = require('webpack');
 let path = require('path');
-let ncp = require('ncp').ncp;
+let fs = require('fs-extra');
 
 let messages = {
   jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
@@ -30,10 +30,13 @@ module.exports = (gulp, options) => {
    * Bootstrapping a new project
    */
   gulp.task('setup-project', done => {
-    ncp(path.resolve('./src'), path.resolve(__dirname, 'src'), (err) => {
+    let setupSrc = path.resolve(__dirname, 'src');
+    let newSrc = path.resolve('./src');
+    fs.copy(setupSrc, newSrc, err => {
       if(err) {
-        throw new gutil.PluginError('jekyll-tasks', err);
+        throw new gutil.PluginError('jekyll-tasks', err.message);
       }
+      gutil.log('Project now setup at ' + newSrc);
       done();
     });
   });
@@ -46,7 +49,7 @@ module.exports = (gulp, options) => {
     cp.spawn('jekyll', ['build', '--source', './src'], {
       stdio: 'inherit'
     }).on('close', (code) => {
-      console.log('Jekyll build finsihed with a code of ' + code);
+      gutil.log('Jekyll build finsihed with a code of ' + code);
       done();
     });
   });
@@ -56,7 +59,7 @@ module.exports = (gulp, options) => {
     cp.spawn('jekyll', ['build', '--source', './src', '--drafts'], {
       stdio: 'inherit'
     }).on('close', (code) => {
-      console.log('Jekyll build finsihed with a code of ' + code);
+      gutil.log('Jekyll build finsihed with a code of ' + code);
       done();
     });
   });
@@ -133,7 +136,7 @@ module.exports = (gulp, options) => {
       gutil.log('[webpack]', stats.toString({
         // output options
       }));
-      callback();
+      done();
     });
   });
 
@@ -146,7 +149,7 @@ module.exports = (gulp, options) => {
       gutil.log('[webpack]', stats.toString({
         // output options
       }));
-      callback();
+      done();
     });
   });
 
