@@ -16,7 +16,7 @@
     "url": "https://github.com/jljorgenson18/jekyll-tasks/issues"
   },
   "homepage": "https://github.com/jljorgenson18/jekyll-tasks#readme",
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer": "^6.7.7",
     "browser-sync": "^2.18.8",
     "cssnano": "^3.10.0",
