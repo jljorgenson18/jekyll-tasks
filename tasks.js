@@ -10,17 +10,20 @@ let awspublish = require('gulp-awspublish');
 let runSequence = require('run-sequence');
 let gutil = require('gulp-util');
 let webpack = require('webpack');
+let path = require('path');
 
 let messages = {
   jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
 };
 
-let webpackDevConfig = require('./defaultConfigs/webpack.config.dev.js');
-let webpackProdConfig = require('./defaultConfigs/webpack.config.prod.js');
+let defaultWebpackDevConfig = require('./defaultConfigs/webpack.config.dev.js');
+let defaultWebpackProdConfig = require('./defaultConfigs/webpack.config.prod.js');
 
 module.exports = (gulp, options) => {
   options = options || {};
   let awsConfig = options.awsConfig;
+  let webpackDevConfig = options.webpackDevConfig || defaultWebpackDevConfig;
+  let webpackProdConfig = options.webpackProdConfig || defaultWebpackProdConfig;
 
   /**
    * Build the Jekyll Site

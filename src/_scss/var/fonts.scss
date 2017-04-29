@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:400,700|Oxygen+Mono|Rufina:400,700');
+$headerFont: 'Muli', sans-serif;
+$bodyFont: 'Rufina', serif;
+$codeFont: 'Oxygen Mono', monospace;
+
+* {
+  font-family: inherit;
+}
+
+body {
+  font-family: $bodyFont;
+  strong {
+    font-weight: 700;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $headerFont;
+  font-weight: 500;
+}
+
+p {
+  line-height: 1.8;
+}
+
+pre {
+  font-family: $codeFont;
+}
