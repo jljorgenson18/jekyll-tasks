@@ -1,0 +1,19 @@
+{
+  "name": "jekyll-tasks",
+  "version": "1.0.0",
+  "description": "A set of gulp tasks and boilerplate setup for Jekyll projects",
+  "main": "tasks.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jljorgenson18/jekyll-tasks.git"
+  },
+  "author": "Jesse Jorgenson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jljorgenson18/jekyll-tasks/issues"
+  },
+  "homepage": "https://github.com/jljorgenson18/jekyll-tasks#readme"
+}

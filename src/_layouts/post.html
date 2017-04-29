@@ -1,0 +1,63 @@
+---
+layout: default
+---
+
+<div class='post-wrapper container {{% if page.featured_image %}}post-wrapper-hasFeaturedImage{{% endif %}}'>
+
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <h5 class="post-date">{{ page.date | date: '%B %d, %Y' }}</h5>
+  </header>
+
+  {% if page.featured_image %}
+  <div class="post-featuredImage">
+    <img src="{{page.featured_image}}" alt="The featured image for this article" />
+  </div>
+  {% endif %}
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <div class="post-share">
+    {% include social-share.html %}
+  </div>
+
+  <div class="post-related">
+    <h4>Related Posts</h4>
+    <ul class="related-posts">
+      {% for post in site.related_posts limit:3 %}
+      <li>
+        <h5>
+            <a href="{{ post.url }}">
+              {{ post.title }}
+              <small>{{ post.date | date_to_string }}</small>
+            </a>
+          </h5>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</div>
+
+<div id="disqus_thread" class='container'></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+var disqus_config = function () {
+  this.page.url = '{{site.url}}{{page.url}}'; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "{{page.title | smartify}}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//jessejorgenson.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>

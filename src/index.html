@@ -1,0 +1,36 @@
+---
+layout: default
+title: Site Title
+---
+
+<div class="home-wrapper">
+  <div class="home-posts container">
+    {% for post in paginator.posts %}
+    <div class="home-post">
+      <h3 class="home-postTitle">
+        <a href="{{ post.url }}">
+          {{ post.title }}
+        </a>
+      </h3>
+
+      <span class="home-postDate">{{ post.date | date_to_string }}</span>
+
+      {{ post.excerpt }}
+
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="home-pagination">
+    {% if paginator.next_page %}
+      <a class="home-paginationItem older" href="/page{{paginator.next_page}}">Older</a>
+    {% endif %}
+    {% if paginator.previous_page %}
+      {% if paginator.page == 2 %}
+        <a class="home-paginationItem newer" href="/">Newer</a>
+      {% else %}
+        <a class="home-paginationItem newer" href="/page{{paginator.previous_page}}">Newer</a>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>

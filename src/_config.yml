@@ -1,0 +1,23 @@
+gems: ['jekyll-paginate','jekyll-feed']
+
+name: Your name
+title: Your title
+description: Your description
+url: http://example.com
+markdown: redcarpet
+redcarpet:
+    extensions: [with_toc_data, footnotes]
+highlighter: pygments
+exclude: [
+  ".editorconfig"
+]
+baseurl: ""
+logo:            # /assets/img/logo.png [best 300px X 300px]
+paginate: 5
+timezone: America/Chicago # eg. Asia/Kathmandu
+locale: en_us
+twitter_username: yourtwittername
+author:
+  name: Your Full Name
+  email: youremail@example.com
+  twitter: yourtwittername
