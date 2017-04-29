@@ -11,6 +11,7 @@ let runSequence = require('run-sequence');
 let gutil = require('gulp-util');
 let webpack = require('webpack');
 let path = require('path');
+let ncp = require('ncp').ncp;
 
 let messages = {
   jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
@@ -25,10 +26,22 @@ module.exports = (gulp, options) => {
   let webpackDevConfig = options.webpackDevConfig || defaultWebpackDevConfig;
   let webpackProdConfig = options.webpackProdConfig || defaultWebpackProdConfig;
 
+  /*
+   * Bootstrapping a new project
+   */
+  gulp.task('setup-project', done => {
+    ncp(path.resolve('./src'), path.resolve(__dirname, 'src'), (err) => {
+      if(err) {
+        throw new gutil.PluginError('jekyll-tasks', err);
+      }
+      done();
+    });
+  });
+
   /**
    * Build the Jekyll Site
    */
-  gulp.task('jekyll-build', (done) => {
+  gulp.task('jekyll-build', done => {
     browserSync.notify(messages.jekyllBuild);
     cp.spawn('jekyll', ['build', '--source', './src'], {
       stdio: 'inherit'
@@ -38,7 +51,7 @@ module.exports = (gulp, options) => {
     });
   });
 
-  gulp.task('jekyll-build:drafts', (done) => {
+  gulp.task('jekyll-build:drafts', done => {
     browserSync.notify(messages.jekyllBuild);
     cp.spawn('jekyll', ['build', '--source', './src', '--drafts'], {
       stdio: 'inherit'
@@ -111,11 +124,11 @@ module.exports = (gulp, options) => {
   });
 
 
-  gulp.task('webpack:dev', callback => {
+  gulp.task('webpack:dev', done => {
     // run webpack
     webpack(webpackDevConfig, (err, stats) => {
       if(err) {
-        throw new gutil.PluginError('webpack', err);
+        throw new gutil.PluginError('jekyll-tasks', err);
       }
       gutil.log('[webpack]', stats.toString({
         // output options
@@ -124,7 +137,7 @@ module.exports = (gulp, options) => {
     });
   });
 
-  gulp.task('webpack:prod', callback => {
+  gulp.task('webpack:prod', done => {
     // run webpack
     webpack(webpackProdConfig, (err, stats) => {
       if(err) {
@@ -173,7 +186,7 @@ module.exports = (gulp, options) => {
    * compile the jekyll site, launch BrowserSync & watch files.
    */
   gulp.task('default', ['browser-sync', 'webpack:dev', 'watch']);
-  gulp.task('deploy', (done) => {
+  gulp.task('deploy', done => {
     runSequence('sass:prod', 'webpack:prod', 'jekyll-build', 'publish', done);
   });
 
