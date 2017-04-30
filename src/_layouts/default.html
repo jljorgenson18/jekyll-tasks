@@ -4,33 +4,8 @@
   {% include head.html %}
 
   <body>
-    <div class="sitewrapper row">
-      <div id='sidebar' class="sidebar col s12 m3 z-depth-3 noPadding">
-        <div class="sidebar-title">
-          <a class="sidebar-description flow-text" href="/">{{site.name}}</a>
-          <button id='sidebar-navToggle' class='sidebar-navToggle fa fa-bars'></button>
-        </div>
-        <div class="divider"></div>
-        <nav class="sidebar-nav" id='sidebar-nav'>
-          {% assign pages_list = site.pages | sort: 'title' %}
-          {% for node in pages_list %}
-            {% if node.title != null and node.title != 'Archive' %}
-              {% if node.layout == "page" %}
-                <a class="sidebar-navItem waves-effect waves-light {% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-          <a class="sidebar-navItem waves-effect waves-light {% if page.url == '/archive.html' %} active{% endif %}" href="/archive.html">Archive</a>
-          <div class="sidebar-search">
-            <input type="text" id="sidebar-searchInput" class='validate' name='search' placeholder='Search...'>
-            <div id="sidebar-searchResults" class="sidebar-searchResults"></div>
-          </div>
-        </nav>
-      </div>
-      <div class="content col s12 m9">
-        {{ content }}
-      </div>
-    </div>
+    
+    {{ content }}
 
     {% include footer.html %}
 
