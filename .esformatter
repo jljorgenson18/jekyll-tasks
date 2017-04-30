@@ -10,15 +10,6 @@
     "type": "single",
     "avoidEscape": true
   },
-  "jsx": {
-    "formatJSX": true,
-    "attrsOnSameLineAsTag": false,
-    "maxAttrsOnTag": 3,
-    "firstAttributeOnSameLine": true,
-    "alignWithFirstAttribute": false,
-    "spaceInJSXExpressionContainers": " ",
-    "htmlOptions": {}
-  },
   "indent": {
     "value": "  "
   },
