@@ -155,9 +155,9 @@ module.exports = (gulp, options) => {
 
   gulp.task('publish', () => {
     if(!awsConfig) {
-      throw new gutil.PluginError('options.awsConfig required for S3 Deployment');
+      throw new gutil.PluginError('jekyll-tasks', 'options.awsConfig required for S3 Deployment');
     } else if(!awsConfig.params || !awsConfig.params.Bucket) {
-      throw new gutil.PluginError('options.awsConfig.params.Bucket required for S3 Deployment');
+      throw new gutil.PluginError('jekyll-tasks', 'options.awsConfig.params.Bucket required for S3 Deployment');
     }
     // create a new publisher using S3 options
     // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#letructor-property
@@ -188,7 +188,7 @@ module.exports = (gulp, options) => {
    * Default task, running just `gulp` will compile the sass,
    * compile the jekyll site, launch BrowserSync & watch files.
    */
-  gulp.task('default', ['browser-sync', 'webpack:dev', 'watch']);
+  gulp.task('dev', ['browser-sync', 'webpack:dev', 'watch']);
   gulp.task('deploy', done => {
     runSequence('sass:prod', 'webpack:prod', 'jekyll-build', 'publish', done);
   });
