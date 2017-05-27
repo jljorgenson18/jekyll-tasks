@@ -7,6 +7,11 @@ A set of gulp tasks and boilerplate setup for Jekyll projects
 ## What is it?
 This is an opinionated Jekyll setup that takes a gulp instance and registers gulp tasks related to running Jekyll projects.
 
+## Installation:
+```sh
+npm install jekyll-tasks --save
+```
+
 ### Requirements:
 * Gulp
 * Node.js >= v4
