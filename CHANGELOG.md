@@ -1,6 +1,6 @@
 # Changelog
 
-### 1.1.3
+### 1.1.4
 * Adding the build task back in
 
 ### 1.1.1
