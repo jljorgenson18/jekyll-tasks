@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.1.2
+* Adding the build task back in
+
 ### 1.1.1
 * Removing src content that isn't applicable to other projects
 * Updating README

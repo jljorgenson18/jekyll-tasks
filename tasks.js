@@ -190,6 +190,9 @@ module.exports = (gulp, options) => {
    */
   gulp.task('dev', ['browser-sync', 'webpack:dev', 'watch']);
   gulp.task('deploy', done => {
+    runSequence('sass:prod', 'webpack:prod', 'jekyll-build', done);
+  });
+  gulp.task('deploy', done => {
     runSequence('sass:prod', 'webpack:prod', 'jekyll-build', 'publish', done);
   });
 
