@@ -1,7 +1,8 @@
 # Changelog
 
-### 1.1.4
+### 1.1.5
 * Adding the build task back in
+* Fixing sass:prod src
 
 ### 1.1.1
 * Removing src content that isn't applicable to other projects

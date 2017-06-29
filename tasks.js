@@ -117,7 +117,7 @@ module.exports = (gulp, options) => {
       reporter({clearMessages: true}),
       cssnano() // minify the result
     ];
-    return gulp.src('_scss/main.scss')
+    return gulp.src('src/_scss/main.scss')
       .pipe(sass({
         outputStyle: 'compressed',
         includePaths: ['scss']
