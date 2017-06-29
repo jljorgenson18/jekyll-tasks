@@ -189,7 +189,7 @@ module.exports = (gulp, options) => {
    * compile the jekyll site, launch BrowserSync & watch files.
    */
   gulp.task('dev', ['browser-sync', 'webpack:dev', 'watch']);
-  gulp.task('deploy', done => {
+  gulp.task('bulk', done => {
     runSequence('sass:prod', 'webpack:prod', 'jekyll-build', done);
   });
   gulp.task('deploy', done => {
