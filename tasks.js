@@ -6,7 +6,6 @@ let autoprefixer = require('autoprefixer');
 let cssnano = require('cssnano');
 let cp = require('child_process');
 let reporter = require('postcss-reporter');
-let awspublish = require('gulp-awspublish');
 let runSequence = require('run-sequence');
 let gutil = require('gulp-util');
 let webpack = require('webpack');
@@ -22,7 +21,6 @@ let defaultWebpackProdConfig = require('./defaultConfigs/webpack.config.prod.js'
 
 module.exports = (gulp, options) => {
   options = options || {};
-  let awsConfig = options.awsConfig;
   let webpackDevConfig = options.webpackDevConfig || defaultWebpackDevConfig;
   let webpackProdConfig = options.webpackProdConfig || defaultWebpackProdConfig;
 
@@ -151,21 +149,6 @@ module.exports = (gulp, options) => {
       }));
       done();
     });
-  });
-
-  gulp.task('publish', () => {
-    if(!awsConfig) {
-      throw new gutil.PluginError('jekyll-tasks', 'options.awsConfig required for S3 Deployment');
-    } else if(!awsConfig.params || !awsConfig.params.Bucket) {
-      throw new gutil.PluginError('jekyll-tasks', 'options.awsConfig.params.Bucket required for S3 Deployment');
-    }
-    // create a new publisher using S3 options
-    // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#letructor-property
-    let publisher = awspublish.create(awsConfig);
-    return gulp.src('./_site/**')
-      .pipe(publisher.publish())
-      .pipe(publisher.sync())
-      .pipe(awspublish.reporter());
   });
 
   /**

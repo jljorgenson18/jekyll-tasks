@@ -28,7 +28,6 @@
     "cssnano": "^3.10.0",
     "fs-extra": "^3.0.0",
     "gulp": "^3.9.1",
-    "gulp-awspublish": "^3.3.0",
     "gulp-postcss": "^6.4.0",
     "gulp-sass": "^3.1.0",
     "gulp-util": "^3.0.8",
