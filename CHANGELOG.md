@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.2.1
+* Updating README and examples since it no longer works with AWS
+
 ### 1.2.0
 * Adding the build task back in
 * Fixing sass:prod src

@@ -175,8 +175,5 @@ module.exports = (gulp, options) => {
   gulp.task('build', done => {
     runSequence('sass:prod', 'webpack:prod', 'jekyll-build', done);
   });
-  gulp.task('deploy', done => {
-    runSequence('sass:prod', 'webpack:prod', 'jekyll-build', 'publish', done);
-  });
 
 };

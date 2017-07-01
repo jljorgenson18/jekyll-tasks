@@ -20,7 +20,6 @@ npm install jekyll-tasks --save
 
 
 ### Optional:
-* AWS Authorization for S3 Deployment
 * jekyll-feed gem (simply remove it from your config if you do not want it)
 * jekyll-paginate gem (simply remove it from your config if you do not want it)
 
@@ -29,7 +28,6 @@ npm install jekyll-tasks --save
 * Browser Sync and Local Dev server
 * Sass, Autoprefixer, and minification of CSS
 * Webpack and Babel
-* Deployment to S3
 
 ### Usage:
 To use this library, pass in your "gulp" instance in your gulpfile.js to jekyll-tasks
@@ -72,7 +70,7 @@ _site
 src/builds
 ```
 * `gulp dev` - Launches your development server and begins watching your files
-* `gulp deploy` - Builds and publishes your site to S3
+* `gulp build` - Builds your site
 ___
 #### Other Tasks (these shouldn't need to be used normally):
 * `gulp jekyll-build` - Builds your jekyll site into `_site`
@@ -83,7 +81,6 @@ ___
 * `gulp sass:prod` - Same as the previous but the CSS is minified
 * `gulp webpack:dev` - Compiles the development version of your Javascript
 * `gulp webpack:prod` - Compiles the production version of your Javascript
-* `gulp publish` - Takes your `_site` directory and publishes it to S3
 * `gulp watch` - Watches your file system for changes and executes the appropriate task
 
 ___
@@ -97,35 +94,6 @@ require('jekyll-tasks')(gulp, options);
 
 * `options.webpackDevConfig` - Development Webpack Config. See the source code for the default config
 * `options.webpackProdConfig` - Production Webpack Config. See the source code for the default config
-* `options.awsConfig` - Your awsConfig for publishing your site. At a minimum, it should look like this...
-
-```json
-{
-  "params": {
-    "Bucket": "example.com"
-  },
-  "region": "us-east-1"
-}
-```
-If your system is not set up with your access key and secret, you can set it manually like this...
-```json
-{
-  "params": {
-    "Bucket": "example.com"
-  },
-  "accessKeyId": "yourAccessKey",
-  "secretAccessKey": "yourSecret",
-  "region": "us-east-1"
-}
-
-```
-My recommendation is to create a gitignored file called awsConfig.json and to pull it into your gulpfile like this
-```js
-const gulp = require('gulp');
-const awsConfig = require('./awsConfig');
-require('jekyll-tasks')(gulp, {awsConfig: awsConfig});
-```
-
 
 
 ## License
