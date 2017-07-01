@@ -1,6 +1,6 @@
 {
   "name": "jekyll-tasks",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A set of gulp tasks and boilerplate setup for Jekyll projects",
   "main": "tasks.js",
   "scripts": {
